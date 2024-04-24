@@ -36,7 +36,7 @@ export default function DataEntryForm() {
     name: z.string().min(2, { message: "Name must be at least 2 characters." }),
     age: z
       .string()
-      .min(2, { message: "Age must be a positive number." })
+      .min(1, { message: "Age must be a positive number." })
       .max(150, {
         message: "Age cannot be more than 150.",
       })
