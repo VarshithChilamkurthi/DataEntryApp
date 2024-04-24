@@ -1,5 +1,7 @@
 import { sql } from "@vercel/postgres"
 
+export const dynamic = "force-dynamic"
+
 export async function GET(request: Request) {
   try {
     const response = await sql`SELECT * FROM dataentryapp;`
