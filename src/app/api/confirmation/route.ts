@@ -6,12 +6,18 @@ export async function GET(request: Request) {
 
     console.log(response)
 
-    return Response.json({
-      data: response.rows,
-    })
+    return Response.json(
+      {
+        data: response.rows,
+      },
+      { status: 200 }
+    )
   } catch (error) {
-    return Response.json({
-      message: "Error",
-    })
+    return Response.json(
+      {
+        message: "Error",
+      },
+      { status: 500 }
+    )
   }
 }
