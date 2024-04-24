@@ -4,11 +4,10 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { Button, buttonVariants } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -22,7 +21,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "./ui/select"
@@ -40,6 +38,7 @@ export default function DataEntryForm() {
       .max(150, {
         message: "Age cannot be more than 150.",
       })
+      .nullable()
       .optional(),
     title: z.string(),
     hometown: z
@@ -52,7 +51,6 @@ export default function DataEntryForm() {
     resolver: zodResolver(formSchema),
   })
 
-  // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
 
@@ -100,6 +98,7 @@ export default function DataEntryForm() {
             <FormItem className="flex flex-row justify-center items-center">
               <FormLabel className="text-lg mx-2 font-semibold">Age</FormLabel>
               <FormControl className="m-0">
+                {/* @ts-ignore */}
                 <Input type="number" placeholder="enter age" {...field} />
               </FormControl>
               <FormMessage />

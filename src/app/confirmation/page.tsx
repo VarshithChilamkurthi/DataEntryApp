@@ -3,13 +3,11 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { resolve } from "path"
 import { useEffect, useState } from "react"
 
 interface rowType {
@@ -113,7 +111,7 @@ export default function SubmitPage() {
                 return (
                   <TableRow className="grid grid-cols-4 gap-4">
                     <TableCell className="font-medium">{item.title}</TableCell>
-                    <TableCell className="flex flex-col">{item.name}</TableCell>
+                    <TableCell>{item.name}</TableCell>
                     <TableCell>{item.age}</TableCell>
                     <TableCell className="text-right">
                       {item.hometown}
@@ -122,7 +120,7 @@ export default function SubmitPage() {
                 )
               })
             ) : (
-              <TableRow>
+              <TableRow className="grid grid-cols-4 gap-4">
                 <TableCell className="font-medium">-</TableCell>
                 <TableCell>-</TableCell>
                 <TableCell>-</TableCell>
