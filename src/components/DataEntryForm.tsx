@@ -27,7 +27,7 @@ import {
   SelectValue,
 } from "./ui/select"
 import { useRouter } from "next/navigation"
-
+import { toast } from "sonner"
 
 export default function DataEntryForm() {
   let router = useRouter()
@@ -53,11 +53,26 @@ export default function DataEntryForm() {
   })
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
-    router.push("/submit")
+
+    try {
+      const response = await fetch(`/api`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      })
+
+      const result = await response.json()
+
+      if (result) {
+        router.push("/confirmation")
+      }
+    } catch (error) {
+      toast.error("Error occured")
+    }
   }
 
   return (
