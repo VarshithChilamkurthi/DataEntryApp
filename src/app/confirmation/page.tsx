@@ -9,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { resolve } from "path"
 import { useEffect, useState } from "react"
 
 interface rowType {
@@ -24,26 +25,32 @@ export default function SubmitPage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(`/api/confirmation`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      cache: "no-store",
-    }).then(async (res) => {
-      let resdata = await res.json()
-      setData(resdata.data)
-      setLastDataRow(
-        resdata.data.length > 0 ? resdata.data[resdata.data.length - 1] : null
-      )
-      setLoading(false)
-    })
+    const fetchData = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 2000))
+
+      fetch(`/api/confirmation`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-store",
+      }).then(async (res) => {
+        let resdata = await res.json()
+        setData(resdata.data)
+        setLastDataRow(
+          resdata.data.length > 0 ? resdata.data[resdata.data.length - 1] : null
+        )
+        setLoading(false)
+      })
+    }
+
+    fetchData()
   }, [])
 
   return (
     <div>
       <div className="text-2xl font-bold tracking-tight text-gray-900 sm:text-2xl mb-10 mt-5">
-        Form has been{" "}
+        Data has been{" "}
         <span className="text-blue-600">successfully submitted</span>. Thank
         you.
       </div>
