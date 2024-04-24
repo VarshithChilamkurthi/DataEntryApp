@@ -108,7 +108,7 @@ export default function SubmitPage() {
           <TableBody>
             {loading ? (
               <div>Loading</div>
-            ) : data.length > 1 ? (
+            ) : data.length > 0 ? (
               data.slice(0, -1).map((item) => {
                 return (
                   <TableRow className="grid grid-cols-4 gap-4">
