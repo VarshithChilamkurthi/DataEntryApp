@@ -87,7 +87,7 @@ export default function DataEntryForm() {
                 Name<span className="text-red-500 mx-1 align-middle">*</span>
               </FormLabel>
               <FormControl className="m-0">
-                <Input placeholder="insert name" {...field} />
+                <Input placeholder="enter name" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -100,7 +100,7 @@ export default function DataEntryForm() {
             <FormItem className="flex flex-row justify-center items-center">
               <FormLabel className="text-lg mx-2 font-semibold">Age</FormLabel>
               <FormControl className="m-0">
-                <Input type="number" placeholder="insert age" {...field} />
+                <Input type="number" placeholder="enter age" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -143,7 +143,7 @@ export default function DataEntryForm() {
                 Hometown
               </FormLabel>
               <FormControl className="m-0">
-                <Input placeholder="insert hometown" {...field} />
+                <Input placeholder="enter hometown" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

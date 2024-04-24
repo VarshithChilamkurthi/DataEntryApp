@@ -25,26 +25,28 @@ export default function SubmitPage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const fetchData = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-
-      fetch(`/api/confirmation`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        cache: "no-store",
-      }).then(async (res) => {
-        let resdata = await res.json()
-        setData(resdata.data)
-        setLastDataRow(
-          resdata.data.length > 0 ? resdata.data[resdata.data.length - 1] : null
-        )
-        setLoading(false)
-      })
-    }
-
-    fetchData()
+    fetch(`/api/confirmation`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-store",
+    }).then(async (res) => {
+      let resdata = await res.json()
+      setData(resdata.data)
+      setLoading(false)
+    })
+    fetch(`/api/latest`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-store",
+    }).then(async (res) => {
+      let resdata = await res.json()
+      console.log(resdata)
+      setLastDataRow(resdata.data)
+    })
   }, [])
 
   return (
